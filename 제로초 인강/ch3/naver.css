@@ -13,9 +13,24 @@
   width: 1080px;
 }
 
-#header-search > h1 {
-  width: 280px;
+#header-search a {
+  text-decoration: none;
+}
+
+#header-search h1 {
+  width: 300px;
+  height: 73px;
+  background-position: 0 -217px;
   display: inline-block;
+  background-image: url(./sp_main_b46ce0.png);
+  text-indent: 100%;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  /*background: url(./sp_main_...) 0 -230px no-repeat;*/
+}
+
+#header-search h1 span {
+  display: none;
 }
 
 #header-search h2 {
@@ -23,7 +38,14 @@
 }
 
 #header-search fieldset {
+  margin-left: 20px;
+  padding-left: 10px;
+  padding-right: 0;
+  padding-top: 12;
+  padding-bottom: 12;
+  border: 2px solid #03cf5d;
   width: 520px;
+  height: 49px;
   display: inline-block;
 }
 /*
