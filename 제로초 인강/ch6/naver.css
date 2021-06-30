@@ -9,6 +9,10 @@ body {
   padding: 0;
   font-family: Dotum, "돋움", Helvertica, "Apple SD Gothic Neo", sans-serif;
 }
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
 #fixed {
   position: fixed;
   top: 50px;
@@ -18,6 +22,10 @@ body {
   height: 100px;
   border: 1px solid black;
   border-radius: 50px;
+}
+
+.inline-block{
+  display: inline-block;
 }
 
 .blind {
@@ -55,7 +63,7 @@ header {
 
 #header-search {
   clear: both;
-  padding-top: 20px;
+  padding-top: 45px;
 }
 
 #header-search a {
@@ -68,8 +76,7 @@ header {
   background-position: -4px -10px;
   display: inline-block;
   background-image: url(./sp_search.png);
-  text-indent: 100%;
-  overflow: hidden;
+ 
   background-repeat: no-repeat;
   /*background: url(./sp_main_...) 0 -230px no-repeat;*/
   vertical-align: middle;
@@ -90,8 +97,8 @@ header {
   margin-left: 18px;
   padding-left: 10px;
   padding-right: 0;
-  padding-top: 12;
-  padding-bottom: 12;
+  padding-top: 12px;
+  padding-bottom: 12px;
   border: 2px solid #03cf5d; /*hex 표기법*/
   width: 521px;
   height: 49px;
@@ -107,7 +114,7 @@ header {
   vertical-align: top;
   width: 395px;
   height: 23px;
-  margin-right: 10px;
+
 }
 
 #header-search fieldset button {
@@ -179,7 +186,7 @@ nav li span:first-child {
   display: inline-block;
   background-image: url(./sp_nav.png);
   background-repeat: no-repeat;
-  margin-left: 14px;
+  margin-left: 10px;
 }
 
 nav li:nth-child(2) span:first-child {
@@ -229,8 +236,8 @@ nav li:nth-child(7) span:first-child {
 }
 
 .nav-divider {
-  float: left;
-  margin: 16px 16px 0;
+  display: inline-block;
+  margin: 18px 16px 0;
   width: 1px;
   height: 14px;
   background: #efebf3;
@@ -283,7 +290,7 @@ nav li:nth-child(16) span:first-child {
 
 #search-ranking {
   position: absolute;
-  top: 185px;
+  top: 16px;
   right: 100px;
 }
 
@@ -307,7 +314,13 @@ main {
   width: 1100px;
 }
 
+#main-first-block{
+  display:inline-block;
+  width:100%;
+}
+
 #main-ad {
+  float-left;
   display: inline-block;
   width: 740px;
   height: 120px;
@@ -315,14 +328,22 @@ main {
 }
 
 #main-login {
+  
   display: inline-block;
   width: 332px;
   height: 120px;
   vertical-align: top;
   background-color: white;
-  vertical-align: top;
+  margin-bottom: 8px;
 }
 
+#main-second-block .inline-block:first-child {
+  width: 740px;
+}
+#main-second-block .inline-block:first-child {
+  width: 332px;
+  vertical-align: top;
+}
 #main-ytn {
   display: inline-block;
   width: 740px;
@@ -331,6 +352,13 @@ main {
   margin-right: 8px;
   margin-bottom: 8px;
 }
+
+
+#main-ytn h3,
+#main-ytn ol {
+    display: inline-block;
+}
+
 
 #main-newsstand {
   display: inline-block;
@@ -341,6 +369,30 @@ main {
   margin-bottom: 8px;
 }
 
+#main-newsstand ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+#main-newsstand h3 {
+  height: 45px;
+  border-bottom: 1px solid #ebeef3;
+}
+
+#main-newsstand li {
+  float: left;
+  width: 123px;
+  height: 67px;
+  border-right: 1px solid #f1f3f6;
+  border-bottom: 1px solid #f1f3f6;
+  text-align: center;
+}
+
+#main-newsstand li img {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
 #main-weather {
   display: inline-block;
   width: 332px;
@@ -359,6 +411,7 @@ main {
 }
 
 #main-category {
+  float: left;
   display: inline-block;
   width: 740px;
   height: 837px;
@@ -374,7 +427,11 @@ main {
   background: white;
   margin-bottom: 8px;
 }
-
+#main-third-block,
+#main-fourth-block {
+    display: inline-block;
+    width: 100%;
+}
 #main-event {
   display: inline-block;
   width: 740px;
