@@ -1,40 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>GitHub</title>
     <link rel="shortcut icon" type="image/x-icon" href="./fluidicon.png" />
     <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
     <div class="header">
-        <div class="center-align"> 
+        <div class="center-align">
             <div id="header-lmenu">
                 <a href="https://www.github.com">
-                    <img src="./gitlogo.png" style="display: inline-block; width: 50px; height: 50px; padding:0; margin: 0;"></img>
-                 </a>       
-                <h2>
-                    <span>Why GitHub? </span>
-                    <span>Team </span>
-                    <span>Enterprise</span>
-                    <span>Explore </span>
-                    <span>Marketplace </span>
-                    <span>Pricing </span>
-                </h2>
+                    <img src="./gitlogo.png"
+                        style="display: inline-block; width: 50px; height: 50px; padding:0; margin: 0;"></img>
+                </a>
+                <ul id="header-lm">
+                    <li><span>Why GitHub? </span></li>
+                    <li><span>Team</span></li>
+                    <li><span>Enterprise</span></li>
+                    <li><span>Explore</span> </li>
+                    <li><span>Marketplace </span></li>
+                    <li><span>Pricing</span></li>
+                </ul>
             </div>
             <div id="header-rmenu">
-
+                
+                <fieldset>
+                    <input />
+                    <button>
+                        <span class="blind">검색</span>
+                    </button>
+                </fieldset>
+                <div id="signin">
+                    <li><span>Sign in</span></li>
+                </div>
+                <div id="signup">
+                    <li><span>Sign up</span></li>
+                </div>
             </div>
         </div>
     </div>
     <div class="content">
-        <div id="content-left"> </div>
-        <div id="content-right">
-            <span>username</span>
+        <div id="content-center">
+            <div id="content-left">
+                <div id="content-built">
+                    <span>Built for</span>
+                    <span>developers</span>
+                </div>
+                <div>
+                    <span id="left-article">GitHub is a development platform inspired by the</span>
+                    <span id="left-article">way you work,From open source to business, you</span>
+                    <span id="left-article">can host and review code, manage projects,and</span>
+                    <span id="left-article">build software alongside 50 million developers.</span>
+                </div>
+            </div>
+            <div id="content-right"> 
+                <span>username</span> <br>   
+                <input/>     <br> 
+                <span>email</span> <br>   
+                <input/> <br> 
+                <span>password</span> <br>   
+                <input/>      <br> 
+            </div>
         </div>
+
+
+    </div>
     </div>
     <div class="footer"></div>
 </body>
+
 </html>

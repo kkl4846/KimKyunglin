@@ -2,6 +2,14 @@
 * {
   box-sizing: border-box;
 }
+.blind {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+}
 
 html,
 body {
@@ -10,8 +18,9 @@ body {
   font-family: Dotum, "돋움", Helvertica, "Apple SD Gothic Neo", sans-serif;
 }
 .center-align {
+  padding: 5px;
   margin: 0 auto;
-  width: 100%;
+  width: 1500px;
 }
 
 .header {
@@ -19,7 +28,8 @@ body {
   height: 80px;
   background: black;
 }
-.header-lm {
+#header-lm {
+  width: 450px;
   list-style: none;
   display: inline-block;
 }
@@ -37,58 +47,100 @@ body {
 }
 
 #header-lmenu {
-  margin: 10px 350px 10px 20px;
-  width: 650px;
+  position: absolute;
+  margin-left: 100px;
+  margin-top: 5px;
+  width: 550px;
   height: 60px;
   background: red;
   display: inline-block;
 }
 
-/*
-#header-lmenu h1 {
-  width: 32px;
-  height: 32px;
+#header-lmenu li {
   display: inline-block;
-  background-image: url(./fluidicon.png);
-  text-indent: 100%;
-  overflow: hidden;
-  background-repeat: no-repeat;
-  vertical-align: middle;
-  position: relative;
-  top: -5px;
-  left: 1px;
+  text-decoration: none;
 }
-*/
+
 #header-lm span {
   color: white;
   letter-spacing: -1px;
-  font-size: 11px;
+  font-size: 14px;
   line-height: 22px;
+  font-weight: bold;
   display: inline-block;
 }
 #header-rmenu {
-  margin: 10px 0;
-  width: 450px;
+  margin-top: 5px;
+  margin-left: 800px;
+  width: 400px;
   height: 60px;
   background: blue;
   display: inline-block;
 }
 
-#content-left {
+#header-rmenu fieldset {
+  width: 20px;
+  padding: 0;
+  display: inline-block;
+}
+
+#signin span {
+  color: black;
+  letter-spacing: 0px;
+  font-size: 12px;
+  line-height: 22px;
+  display: inline-block;
+  font-weight: bold;
+}
+
+#signiup span {
+  color: black;
+  letter-spacing: -0px;
+  font-size: 12px;
+  line-height: 22px;
+  display: inline-block;
+  font-weight: bold;
+}
+
+#content-center {
   margin: 20px 30px 2px 200px;
-  width: 500px;
-  height: 500px;
+  width: 1200px;
+  height: 550px;
   background: black;
   display: inline-block;
 }
-#content-right {
-  margin: 20px 200px 20px 30px;
+#content-left {
   width: 500px;
   height: 500px;
   background: white;
   display: inline-block;
 }
 
-#content-right span {
+#content-left span {
   display: inline-block;
+}
+
+#content-built span {
+  margin-top: 10pt;
+  color: red;
+  letter-spacing: -1px;
+  font-size: 80px;
+  line-height: 22px;
+  display: inline-block;
+}
+
+#content-right {
+  width: 500px;
+  height: 500px;
+  background: white;
+  display: inline-block;
+}
+
+#left-article {
+  color: gray;
+  letter-spacing: -1px;
+  font-size: 15px;
+  line-height: 22px;
+  display: inline-block;
+  font-weight: 1000;
 }
