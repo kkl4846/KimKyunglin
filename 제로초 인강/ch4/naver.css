@@ -112,17 +112,20 @@ nav li {
   display: inline-block;
 }
 
+nav li:first-child span.nav-item-mail {
+  width: 25px;
+  background-position: 0-285px;
+  margin-left: 0;
+}
+/*은미달 nav-item이 있기 때문에 위에 있어도 우선순위 먼저 !important는 최후의 수단*/
 nav li span:first-child {
   height: 16px;
   display: inline-block;
   background-image: url(./sp_nav.png);
   background-repeat: no-repeat;
+  margin-left: 14px;
 }
 
-nav li:first-child span:first-child {
-  width: 25px;
-  background-position: 0-285px;
-}
 nav li:nth-child(2) span:first-child {
   width: 27px;
   background-position: -279px -52px;
