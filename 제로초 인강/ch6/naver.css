@@ -558,9 +558,11 @@ main {
 #subject-list,#subject-all,#subject-prev,#subject-next{
   float:left;
   float:45px;
+  padding: 0;
 }
 #subject-list{
   width:603px;
+  position:relative;
 }
 #subject-list ul{
   lsit-style: none;
@@ -569,6 +571,40 @@ main {
 }
 #subject-list li{
   float:left;
+  margin-right: 10px;
+  padding: 14px 7px 0;
+  font-weight:700;
+  font-size:14px;
+  font-family: NanumSquare,Dotum, "돋움", Helvertica, "Apple SD Gothic Neo", sans-serif;
+  
+}
+
+.opacity{
+  opacity:0.5;
+  background:white;
+
+}
+.opacity.left{
+ position:absolute;
+ left:0;
+ top:0;
+ height:45px;
+ width:15px;
+
+}
+.opacity.right{
+  position:absolute;
+  right:0;
+  top:0;
+  height:45px;
+  width:15px;
+
+}
+
+#subject-list li.highlight{
+  height:45px;
+  border-bottom: 3px-solid #00c73c;
+  color: #00b336;
 }
 
 #subject-all,#subject-prev,#subject-next{
