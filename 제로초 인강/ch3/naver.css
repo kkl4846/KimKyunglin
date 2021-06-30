@@ -21,11 +21,11 @@
 }
 
 #header-search h1 {
-  width: 300px;
-  height: 73px;
-  background-position: 0 -217px;
+  width: 198px;
+  height: 48px;
+  background-position: -4px -10px;
   display: inline-block;
-  background-image: url(./sp_main_b46ce0.png);
+  background-image: url(./sp_search.png);
   text-indent: 100%;
   overflow: hidden;
   background-repeat: no-repeat;
@@ -59,6 +59,29 @@
   outline: none;
   vertical-align: middle;
 }
+#header-search fieldset button {
+  width: 49px;
+  height: 49px;
+  border: 0;
+  padding: 0;
+  background: #03cf5d;
+}
+
+#search-image {
+  background-image: url(./sp_search.png);
+  background-position: -3px -60px;
+  background-repeat: no-repeat;
+  width: 21px;
+  height: 21px;
+  display: inline-block; /*inline은 가로세로 마음대로 조절힘듦*/
+  margin: 14px;
+}
+/*
+}
+#header-search field button span{
+  background: url(./sp_main_b46ce0.png);
+}
+*/
 /*
 자손을 선택할 때는
 #header-search h1{
