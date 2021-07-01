@@ -141,7 +141,7 @@ body {
 }
 
 #content-built span {
-
+  margin-left: 50px;
   margin-top: 40pt;
   color:white;
   letter-spacing: -1px;
@@ -162,6 +162,7 @@ body {
 }
 
 #left-article {
+  margin-left: 100px;
   margin-top:20px;
   color: gray;
   letter-spacing: -1px;
