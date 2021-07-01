@@ -33,6 +33,15 @@ body {
   list-style: none;
   display: inline-block;
 }
+#search-image{
+    background-image: url(./button.png);
+    background-repeat: no-repeat;
+    width: 21px;
+    height: 21px;
+    display: inline-block; /*inline은 가로세로 마음대로 조절힘듦*/
+    margin: 14px;
+  }
+}
 
 .content {
   width: 100%;
@@ -43,7 +52,6 @@ body {
 .footer {
   width: 100%;
   height: 200px;
-  background: yellow;
 }
 
 #header-lmenu {
@@ -52,7 +60,7 @@ body {
   margin-top: 5px;
   width: 550px;
   height: 60px;
-  background: red;
+  background: black;
   display: inline-block;
 }
 
@@ -79,6 +87,7 @@ body {
 }
 
 #header-rmenu fieldset {
+    background-color: gray;
   width: 20px;
   padding: 0;
   display: inline-block;
@@ -112,7 +121,7 @@ body {
 #content-left {
   width: 500px;
   height: 500px;
-  background: white;
+  background: black;
   display: inline-block;
 }
 
@@ -121,8 +130,9 @@ body {
 }
 
 #content-built span {
-  margin-top: 10pt;
-  color: red;
+
+  margin-top: 40pt;
+  color:white;
   letter-spacing: -1px;
   font-size: 80px;
   line-height: 22px;
@@ -130,17 +140,59 @@ body {
 }
 
 #content-right {
+  margin-top: 20px;
+  margin-right: 100px;
+  float: right;
   width: 500px;
   height: 500px;
   background: white;
   display: inline-block;
+  padding-bottom: 20px;
 }
 
 #left-article {
+  margin-top:20px;
   color: gray;
   letter-spacing: -1px;
   font-size: 15px;
   line-height: 22px;
   display: inline-block;
   font-weight: 1000;
+}
+
+#footer-image span{
+    background-image: url(./footer.jpg);
+
+ 
+}
+
+#content-right al{
+  padding-bottom: 20px;
+  list-style:none;
+
+}
+
+#content-right li{
+  font-size: 30px;
+  line-height: 22px;
+}
+
+#content-right span{
+  padding-top:20px;
+  line-height: 30px;
+
+}
+#btnsign{
+  color:white;
+  background-color:green;
+  width:400px;
+  height:80px;
+  line-height:80px;
+  border-radius:10px;
+
+}
+
+.footer img{
+ 
+  float:right;
 }
