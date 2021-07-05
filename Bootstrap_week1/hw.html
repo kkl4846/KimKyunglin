@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+
+<script>
+    function fnMove(seq) {
+        var offset = $("#div" + seq).offset();
+        $('html, body').animate({ scrollTop: offset.top }, 400);
+    }
+</script>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/67d418f4de.js" crossorigin="anonymous"></script>
+    <i class="far fa-circle"></i>
+
+
+
+
+    <title>Bootstrap Pirogramming15</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-dark navbar navbar-expand-lg navbar-light bg-light mb-auto fixed-top ">
+
+       
+        <button class="navbar-toggler navbar-toggler-leff " type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <a class="navbar-brand " href="#" onclick="fnMove('1')">Pirogramming15</a>
+        <div class="text-info mx-5 ">Kim KyungLin</div>
+
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link pl-5 mb-2" href="#" onclick="fnMove('2')">Intro <span
+                            class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link pl-5 mb-2  " href="#" onclick="fnMove('3')">Highlights</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link pl-5 mb-2 " href="#" onclick="fnMove('4')">Gallery</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link pl-5 mb-2 " href="#" onclick="fnMove('5')">Contact</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <button class="btn btn-outline-info my-2 my-sm-0" type="submit" data-toggle="modal"
+                    data-target="#btnAbout">about</button>
+            </form>
+        </div>
+    </nav>
+
+            <!--about Modal-->
+            <div class="modal fade " id="btnAbout" data-backdrop="static" data-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog ">
+                    <div class="modal-content bg-secondary">
+                        <div class="modal-body text-light text-center">
+                            <h1>피로그래밍 15기</h1>
+                            <h6 class="my-5">파이팅!!</h6>
+                            <h6>과제 난이도 열심히 낮춰봤습니다. 우리 남은 세션 지치지 않고 열심히 해봐요! 힘들더라도 끝나면 남는 게 많을 거예요
+                                과제 던지지 않는 사람이 최종 프로젝트때 웃게 될 것입니다.....
+                                과제 많이 던지면 프로젝트 때 후회해요
+                            </h6>
+
+                        </div>
+                        <div class="modal-footer d-flex justify-content-end">
+                            <a href="#" class="text-primary">Donwnload</a>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <!-- section1 -->
+ 
+    <div style="height: 700px" id="div1">
+        <div class="card h-100  d-flex justify-content-center ">
+
+            <div class="text-center">
+
+                <h1 class="mx-auto mt-2 mb-3 ">Pirogramming15</h1>
+                <h5 class="mx-auto mt-2 mb-3">Cheer Up</h5>
+                <hr class="my-2">
+                <button type="button" onclick="fnMove('2')" class="btn btn-primary bg-primary">Get Started</button>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- section2 -->
+    <div style="height: 700px" id="div2">
+        <div class="card h-100  d-flex justify-content-center bg-secondary">
+
+            <div class="text-center">
+                <h1 class="mx-auto mt-2 mb-3 text-danger">Built On The Bootstrap Grid</h1>
+                <h5 class="mx-auto mt-2 mb-3 text-light w-50">Bootstrap's reponsive grid comes in 4 sizes or
+                    "breakpoints":tiny(xs), small(sm),medium(md) and large(lg). These 4 grid sizes enable you create
+                    responsive layouts that behave accordingly on different devices.</h5>
+
+                <a class="btn bg-light" href="#" onclick="fnMove('3')">Learn More</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- section3 -->
+    <div class=" bg-dark " id="div3">
+        <div class="text-center w-100">
+            <h1 class="mx-auto p-5 text-primary  text-wrap text-center">Flexible Layouts</h1>
+
+        </div>
+
+        <div class="container marketing ">
+
+            <!-- Three columns of text below the carousel -->
+            <div class="row">
+                <div class="col-lg-4 text-center">
+                    <i class="fas fa-desktop fa-5x text-light"></i>
+
+                    <h2 class="text-light">Responsive</h2>
+                    <p class="text-light">Your site looks good anywhere</p>
+
+                </div>
+                <div class="col-lg-4 text-center">
+                    <i class="fab fa-sass fa-5x text-light"></i>
+
+                    <h2 class="text-light">Customizable</h2>
+                    <p class="text-light">Easy to theme and customize with SASS</p>
+
+                </div>
+                <div class="col-lg-4 text-center">
+                    <i class="far fa-star fa-5x text-light"></i>
+
+                    <h2 class="text-light">Constant</h2>
+                    <p class="text-light">A mature,well-tested, stable codebase</p>
+
+                </div>
+                <!--section4-->
+                <div class="col-sm-12 col-md-6 col-lg-4  text-center" id="div4">
+                    <img src="https://picsum.photos/seed/picsum1/400/400" class="img-fluid mb-4 " alt="...">
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 text-center">
+                    <img src="https://picsum.photos/seed/picsum2/400/400" class="img-fluid mb-4" alt="...">
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 text-center">
+                    <img src="https://picsum.photos/seed/picsum3/400/400" class="img-fluid mb-4" alt="...">
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 text-center">
+                    <img src="https://picsum.photos/seed/picsum4/400/400" class="img-fluid mb-4" alt="...">
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 text-center">
+                    <img src="https://picsum.photos/seed/picsum5/400/400" class="img-fluid mb-4" alt="...">
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 text-center">
+                    <img src="https://picsum.photos/seed/picsum6/400/400" class="img-fluid mb-4" alt="...">
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 text-center">
+                    <img src="https://picsum.photos/seed/picsum7/400/400" class="img-fluid mb-4" alt="...">
+                </div>
+                <div class="col-sm-12 col-md-6 col-sm-12 col-md-6 col-lg-4 text-center">
+                    <img src="https://picsum.photos/seed/picsum8/400/400" class="img-fluid mb-4" alt="...">
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 text-center">
+                    <img src="https://picsum.photos/seed/picsum9/400/400" class="img-fluid mb-4" alt="...">
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <!--section5-->
+    <div class=" bg-secondary text-center " id="div5">
+        <div class="text-center">
+            <h1 class="mx-auto p-5 text-primary  text-wrap text-center">Get in touch</h1>
+            <h5 class="mx-auto mt-2 mb-3 text-light">We love feedback. Fill out the form below and we'll get back to you
+                as soon as possible</h5>
+        </div>
+
+
+        <div class="container" style="width:60%;">
+
+            <div class="form-row d-flex justify-content-between">
+                <div class="form-group col-lg-3">
+                    <input type="password" class="form-control" id="inputPassword4" placeholder="Name">
+                </div>
+
+                <div class="form-group col-lg-3">
+                    <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                </div>
+                <div class="form-group col-lg-3">
+                    <input type="text" class="form-control " id="inputEmail4" placeholder="Phone">
+                </div>
+
+            </div>
+
+            <div class="form-group col-lg-12 p-0 d-flex align-items-center text-center mx-auto">
+
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"
+                    placeholder="Your message here..."></textarea>
+            </div>
+            <div class="text-center p-5">
+                <button type="submit" class="btn btn-primary  btn-lg " data-toggle="modal"
+                    data-target="#btnsend">Send</button>
+                    
+            </div>
+            
+
+
+        </div>
+   
+
+
+
+            <!--section6-->
+            <div class=" bg-dark p-5" id="div6">
+                <div class="container">
+
+                    <!-- Three columns of text below the carousel -->
+                    <div class="row ">
+                        <div class="col-sm-12 col-md-6 col-lg-4 ">
+                            <h4 class="text-info ">Information</h4>
+                            <h6 class="text-light">Products</h6>
+                            <h6 class="text-light">Services</h6>
+                            <h6 class="text-light">Benefit</h6>
+                            <h6 class="text-light">Developers</h6>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-4 ">
+                            <h4 class="text-info">About</h4>
+                            <h6 class="text-light">Contact Us</h6>
+                            <h6 class="text-light">Delivery Infomation</h6>
+                            <h6 class="text-light">Privacy Policy</h6>
+                            <h6 class="text-light">Terms & Condition</h6>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-4 ">
+                            <h4 class="text-info">Stay Posted</h4>
+
+                            <input class="form-control my-2" placeholder="Tell us your email">
+                            <button type="submit " class="btn btn-primary my-2" data-toggle="modal"
+                            data-target="#btnsend">Subscribe for updates</button>
+                        </div>
+                        <div class="my-5 text-secondary">Bootstrap @2021 Pirogramming15</div>
+                    </div>
+                </div>
+    <!--send+subscribe Modal-->
+    <div class="modal fade" id="btnsend" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <h1>Nice Job!</h1>
+                    <h6>You clicked the button, but it doesn't actually go anywhere.</h6>
+                    <a href="#" class="text-primary my-4">Learn more at Bootstrap</a>
+                </div>
+                <div class="modal-footer d-flex justify-content-end">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+    
+                </div>
+    
+            </div>
+    
+        </div>
+    </div>
+
+
+
+                <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+                    integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+                    crossorigin="anonymous"></script>
+</body>
+
+</html>
