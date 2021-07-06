@@ -1,10 +1,15 @@
 
+from random import *
 num=0
 finish='0'
 def brGame(user):
         global num,finish
         while True:
-            numberOfInput=input('부를 숫자의 개수를 입력하세요(1,2,3만 입력 가능) :')
+            if user=='computer':
+                numberOfInput=randint(1,3)
+                print('부를 숫자의 개수를 입력하세요(1,2,3만 입력 가능) :',numberOfInput)
+            else:
+                numberOfInput=input('부를 숫자의 개수를 입력하세요(1,2,3만 입력 가능) :')
             try:
                 numberOfInput=int(numberOfInput)
                 it_is=True
@@ -20,21 +25,21 @@ def brGame(user):
 
         for i in range(numberOfInput):
             num=num+1
-            print('player{0} :{1}'.format(user,num))
+            print('{0} :{1}'.format(user,num))
             if num==31:
-                if user=='A':
-                    finish='B'
+                if user=='computer':
+                    finish='player'
                 else:
-                    finish='A'
+                    finish='computer'
                 break
 
 
 while True:
-    brGame('A')
+    brGame('computer')
     if finish!='0':
-        print('player{0} win!'.format(finish))
+        print('{0} win!'.format(finish))
         break
-    brGame('B')
+    brGame('player')
     if finish!='0':
-        print('player{0} win!'.format(finish))
+        print('{0} win!'.format(finish))
         break
