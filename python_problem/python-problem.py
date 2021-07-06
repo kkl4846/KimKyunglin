@@ -23,7 +23,7 @@ while True:
             finish='B'
             break
     if finish!='0':
-
+        print('player{0} win!'.format(finish))
         break
             
 
@@ -48,6 +48,6 @@ while True:
             finish='A'
             break
     if finish!='0':
-        
+        print('player{0} win!'.format(finish))
         break
             
