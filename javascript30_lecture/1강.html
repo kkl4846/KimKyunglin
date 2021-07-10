@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Drum Kit</title>
+  <link rel="stylesheet" href="1강.css">
+</head>
+<body>
+
+
+  <div class="keys">
+    <div data-key="65" class="key">
+      <kbd>A</kbd>
+      <span class="sound">clap</span>
+    </div>
+    <div data-key="83" class="key">
+      <kbd>S</kbd>
+      <span class="sound">hihat</span>
+    </div>
+    <div data-key="68" class="key">
+      <kbd>D</kbd>
+      <span class="sound">kick</span>
+    </div>
+    <div data-key="70" class="key">
+      <kbd>F</kbd>
+      <span class="sound">openhat</span>
+    </div>
+    <div data-key="71" class="key">
+      <kbd>G</kbd>
+      <span class="sound">boom</span>
+    </div>
+    <div data-key="72" class="key">
+      <kbd>H</kbd>
+      <span class="sound">ride</span>
+    </div>
+    <div data-key="74" class="key">
+      <kbd>J</kbd>
+      <span class="sound">snare</span>
+    </div>
+    <div data-key="75" class="key">
+      <kbd>K</kbd>
+      <span class="sound">tom</span>
+    </div>
+    <div data-key="76" class="key">
+      <kbd>L</kbd>
+      <span class="sound">tink</span>
+    </div>
+  </div>
+
+  <audio data-key="65" src="sounds/clap.wav"></audio>
+  <audio data-key="83" src="sounds/hihat.wav"></audio>
+  <audio data-key="68" src="sounds/kick.wav"></audio>
+  <audio data-key="70" src="sounds/openhat.wav"></audio>
+  <audio data-key="71" src="sounds/boom.wav"></audio>
+  <audio data-key="72" src="sounds/ride.wav"></audio>
+  <audio data-key="74" src="sounds/snare.wav"></audio>
+  <audio data-key="75" src="sounds/tom.wav"></audio>
+  <audio data-key="76" src="sounds/tink.wav"></audio>
+
+<script>
+ 
+  function playSound(e){
+    
+    const audio=document.querySelector(`audio[data-key="${e.keyCode}"]`);   
+    const key =document.querySelector(`.key[data-key="${e.keyCode}"]`);   
+    if(!audio) return;  //audio가 없으면 함수 멈추기?
+    audio.currentTime=0  //연속적으로 같은 버튼을 클릭했을 때 소리나게
+    audio.play();     //있으면 play
+    //key.addClass('playing') jquery일때 밑의 문장과 같음
+    key.classList.add('playing');
+   
+  }
+
+function removeTransition(e){
+    if(e.propertyName!=='transform') return //transform의 형태가 아니면 skip
+    this.classList.remove('playing')        //this=key  class가 key-playing이었다가 transition이 끝나니까 playing이 제거
+  }
+const keys=document.querySelectorAll('.key');
+
+keys.forEach(key => key.addEventListener('transitionend',removeTransition));//transitionend는 오타가 아님. transitionend event가 존재/ 객체에 부여된 transition이 끝난 후 발생되는 event이다
+window.addEventListener('keydown',playSound);
+</script>
+
+
+</body>
+</html>
