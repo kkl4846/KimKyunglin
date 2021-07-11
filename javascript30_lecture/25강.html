@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Understanding JavaScript's Capture</title>
+</head>
+<body class="bod">
+
+  <div class="one">
+    <div class="two">
+      <div class="three">
+      </div>
+    </div>
+  </div>
+
+<style>
+  html {
+    box-sizing: border-box;
+  }
+  
+  *, *:before, *:after { 
+    box-sizing: inherit; 
+  }
+
+  div {
+    width: 100%;
+    padding: 100px;
+  }
+
+  .one {
+    background: thistle;
+  }
+
+  .two {
+    background: mistyrose;
+  }
+
+  .three {
+    background: coral;
+  }
+</style>
+
+<button></button>
+<script>
+  const divs=document.querySelectorAll('div');
+  const button=document.querySelector('button');
+  function logText(e){
+    //console.log(this.classList.value);
+    //e.stopPropagation();      //bubbling하는것을 멈추고 클릭한 것만 나타내기
+  }
+  //document.body.addEventListener('click',logText);   //맨 위 요소까지 파급된다 three click하면 three->two->one->bod.
+  divs.forEach(div => div.addEventListener('click',logText,{
+    capture:false,
+    once:true  //한번 이상 클릭되면 unbinding
+  }));  
+
+  //once:true의 예시를 button을 이용해 보여줌. 한번만 클릭할 수 있다. 다시 check되지 않음
+  button.addEventListener('click',()=>{
+    console.log("clicked!!");
+  },{
+    once:true
+  })
+/*
+  div.removeEventListener('click',logText,  //once:true와 같음
+  capture?: boolean)
+  */logText
+//클릭하면 body부터 ripple down 모든 이벤트를 capture /발생하는 것이 아닌 store 하다가 다시 up하면서 발생시킴
+//따라서    capture:true을 하면 one->two->three capture는 run the function one the way down 
+//이때    e.stopPropagation(); 를 실행하면 one에서 stop하므로 three를 클릭해도 one 출력
+//caputre:false 는 반대
+</script>
+</body>
+</html>
