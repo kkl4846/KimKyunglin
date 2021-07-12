@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Type Ahead 👀</title>
+  <link rel="stylesheet" href="6강.css">
+</head>
+<body>
+
+  <form class="search-form">
+    <input type="text" class="search" placeholder="City or State">
+    <ul class="suggestions">
+      <li>Filter for a city</li>
+      <li>or a state</li>
+    </ul>
+  </form>
+<script>
+const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+
+const cities =[];
+//fetch(endpoint)   //fetch(endpoint)는 promise를 return(not data)
+//fetch(endpoint).then(blob)  //return blobog data
+//fetch(endpoint).then(blob => console.log(blob));  // 아직 data를 알 수 없다 blob안에 json포함
+fetch(endpoint)                 //array of city
+  .then(blob => blob.json())
+  .then(data=>cities.push(...data));    //const변수를 유지하며 cities에 data넣기 let 변수로 정의하면 cities=data로 구현 가능
+                                      //push(data)를 하면 배열에 개별적으로 추가된다. [array[1000],1,2,3] 따라서 ...data를 하면 array[1003]
+function findMatches(wordToMatch,cities){
+  return cities.filter(place => {
+    //city or state mateches searched
+    const regex=new RegExp(wordToMatch,'gi')   // g:global meaning i:insensitive meaning  regardless of lowercase and uppercase
+    return place.city.match(regex) || place.state.match(regex)  // city와 state에서 search
+  });
+}
+
+function numberWithCommas(x){    //population사이에 , 넣기
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g,',');
+}
+
+
+function displayMatches(){    //input에 넣어진 것을 suggestions의 자리에 <li>로 추가해서 보이기
+  const matchArray=findMatches(this.value,cities);
+  const html=matchArray.map(place=> {    
+    const regex= new RegExp(this.value,'gi');
+    const cityName=place.city.replace(regex,`<span class="hl">${this.value}</span>`)    //input highlight  
+    const stateName=place.state.replace(regex,`<span class="hl">${this.value}</span>`) 
+    return `
+    <li>
+      <span class = "name">${cityName}, ${stateName}</span>
+      <span class = "population">${numberWithCommas(place.population)}</span>
+    </li>
+    `;
+  }).join('');
+  suggestions.innerHTML=html;
+}
+
+const searchInput = document.querySelector('.search');
+const suggestions = document.querySelector('.suggestions');
+
+searchInput.addEventListener('change', displayMatches);
+searchInput.addEventListener('keyup', displayMatches);   //type할때마다 반응하도록 
+
+</script>
+
+</body>
+</html>
