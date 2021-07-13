@@ -1,0 +1,38 @@
+{% load static %}
+<html>
+
+<head>
+    <title>KyungLin's blog</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+<link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div class="page-header">
+        <h1>Welcome to</h1>
+        <h2>Kyunglin's blog</h2>
+    </div>
+    <div class="content container">
+        <div class="row">
+            <div class="col-md-8">
+               {% block content %}
+               {% endblock %}
+            </div>
+        </div>
+    </div>
+    
+    <!--
+        <div>
+        <h3><a href="">My first post</a></h3>
+        <p>whlthdgkqslek rltdlrmshdjfmf Tjtejsl rhkwprk ektl zjaltehldjTdjdy</p>
+        </div>
+        <div>
+            <h3><a href="">My second post</a></h3>
+            <p>rhkwp cowjagktlf glaemfrpgotj whlthdgkqslek..</p>
+        </div>
+        -->
+</body>
+
+</html>
