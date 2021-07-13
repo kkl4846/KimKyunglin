@@ -5,7 +5,7 @@
     <div class="date">
         <p>published: {{ post.published_date }}</p>
     </div>
-    <h1><a href="">{{ post.title }}</a></h1>
+    <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1> <!--pk는 데이터베이스의 각 레코드를 식별하는 기본키(Prmiary Key)의 줄임말 -->
     <p>{{ post.text|linebreaksbr }}</p>
 </div>
 {% endfor %}
