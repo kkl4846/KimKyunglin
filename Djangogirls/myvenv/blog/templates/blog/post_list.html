@@ -1,10 +1,20 @@
 <html>
-    <head>
-        <title>KyungLin's blog</title>
-    </head>
-    <body>
-        <h1>Welcome</h1>
-        <h2>Kyunglin's blog</h2>
+
+<head>
+    <title>KyungLin's blog</title>
+</head>
+
+<body>
+    <h1>Welcome</h1>
+    <h2>Kyunglin's blog</h2>
+    {% for post in posts %}
+        <div>
+            <p>published: {{ post.published_date }}</p>
+            <h1><a href="">{{ post.title }}</a></h1>
+            <p>{{ post.text|linebreaksbr }}</p>    <!--|linebreaksbr  행이 바뀌면 문단으로 변환-->
+        </div>
+    {% endfor %}
+    <!--
         <div>
         <h3><a href="">My first post</a></h3>
         <p>whlthdgkqslek rltdlrmshdjfmf Tjtejsl rhkwprk ektl zjaltehldjTdjdy</p>
@@ -13,5 +23,7 @@
             <h3><a href="">My second post</a></h3>
             <p>rhkwp cowjagktlf glaemfrpgotj whlthdgkqslek..</p>
         </div>
-    </body>
+        -->
+</body>
+
 </html>
