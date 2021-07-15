@@ -4,5 +4,6 @@
         "C0111,C0301",
         "--load-plugins",
         "pylint_django"
-    ]
+    ],
+    "typescript.disableAutomaticTypeAcquisition": true
 }
