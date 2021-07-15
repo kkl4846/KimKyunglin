@@ -1,7 +1,11 @@
 from django.db import models
+#모델 클래스명은 단수형으로 지정
+#첫 글자를 대문자로 네이밍
 
-#08강에서 shell 실행하려면 Item객체 생성해줘야해서 추가
 class Item(models.Model):
-    name=models.CharField(verbose_name='이름',max_length=100)
-    def __str__(self):
-        return self.name
+    name=models.CharField(max_length=100)
+    desc=models.TextField(blank=True)   #빈경우도 허용하겠다.
+    price=models.PositiveIntegerField()
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now=True)
+
