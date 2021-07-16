@@ -23,8 +23,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'k4n%hqtvmkg)#&5j-tfb0*sa9lv5#^f!2)zac5*2(r#tctls$+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
+DEBUG = True  #이때 쿼리 실행내역을 메모리에 누적한다.
+              #메모리가 부족할 수 있기때문에 서비스 진행시 꺼놓기?
 ALLOWED_HOSTS = []
 
 
@@ -37,9 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'debug_toolbar',
     'django_extensions',
     'shop',
     'blog',
+    
     
 ]
 
@@ -51,6 +54,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+
 ]
 
 ROOT_URLCONF = 'askcompany.urls'
@@ -81,6 +87,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    },
+    'mypostgres':{
+
     }
 }
 
@@ -122,3 +131,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+INTERNAL_IPS = [
+    # ...
+    '127.0.0.1',
+    # ...
+]
