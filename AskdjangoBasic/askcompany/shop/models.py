@@ -28,3 +28,5 @@ class Post(models.Model):  #충돌 실험
 #queryset.filter('') ,exclude('') & | 가능
 #lt less than lte less than equal
 #g greter
+
+#edit
