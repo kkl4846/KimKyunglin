@@ -29,4 +29,3 @@ class Post(models.Model):  #충돌 실험
 #lt less than lte less than equal
 #g greter
 
-#edit
