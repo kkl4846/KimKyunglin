@@ -13,6 +13,9 @@ class Item(models.Model):
     name=models.CharField(max_length=100)
     desc=models.TextField(blank=True)   #빈경우도 허용하겠다.
     price=models.PositiveIntegerField()
+    is_publish=models.BooleanField(default=False)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
-
+    def __str__(self):  #item에서 이름 보이도록
+        #return self.name
+        return f'<{self.pk} {self.name}>'
