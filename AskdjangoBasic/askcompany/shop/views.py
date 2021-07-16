@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect , resolve_url, get_object_or_404
 from shop.models import Item
 from django.http import HttpResponse, JsonResponse
 # Create your views here.
-
+from .models import Item
 
 #07강 http 상태코드로 응답
 #200번대: 성공 300번대: 요청을 마치기 위해ㅣ 추가동작 400번대: 클라이언트측 오류 500번대 서버측 오류(indexerror,keyerror,django,db,models.objectdoesnotexist등)
@@ -53,6 +53,12 @@ def archives_year(request,year):
 
 def item_list(request):
     qs=Item.objects.all()  #model에서 Item 선언해줘야함
-    return render(request,'shop/item_list.html',{
-        'item_list':qs, 
+    
+    q=request.GET.get('q','')
+    if q:
+        qs=qs.filter(name__icontains=q)
+    return render(request,'shop/item_list.html', {
+        'item_list': qs, 
+      
         })
+

@@ -19,3 +19,9 @@ class Item(models.Model):
     def __str__(self):  #item에서 이름 보이도록
         #return self.name
         return f'<{self.pk} {self.name}>'
+
+
+#13강 queryset조회 방법
+#queryset[index] 는 객체 1개만 획득
+#queryset.get(..) 1개만 가져옴. 없거나 2개이상이면 오류발생
+#queryset.first() 첫번째 .last()마지막 만약 없다면 none을 return함 오류를 발생시키지않음
