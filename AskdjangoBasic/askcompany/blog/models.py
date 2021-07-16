@@ -16,3 +16,15 @@ class Post(models.Model):
 class Comment(models.Model):
     post=models.ForeignKey(Post,on_delete=models.CASCADE) #on_delete...속해있는 post가 삭제되면 comment도 삭제하겠다라는 의미 
     message=models.TextField()
+
+
+
+#15강 올바른 user 모델 지정
+#blog/models.py
+#class Post(models.Model):
+#    author=models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+#django/contrib/auth/models.py
+#class User (AbstractBaseUser)
+
+#특정 포스트에 속한 코멘트 불러오기-> post.comment_set.all() == Comment.objects.filter(post=post)
