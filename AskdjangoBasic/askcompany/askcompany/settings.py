@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'debug_toolbar',
     'django_extensions',
     'shop',
@@ -64,11 +63,13 @@ ROOT_URLCONF = 'askcompany.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': [
+            os.path.join(BASE_DIR,'askcompany', 'templates'),
+            ],  #프로젝트 전반적으로 사용할 앱은 여기에 추가
+        'APP_DIRS': True,  #거짓이라면 앱 밑에 있는 templates는 사용하지않음.
         'OPTIONS': {
             'context_processors': [
-                'django.template.context_processors.debug',
+                'django.template.context_processors.debug',  
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',

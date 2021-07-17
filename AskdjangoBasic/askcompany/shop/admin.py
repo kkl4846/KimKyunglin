@@ -8,7 +8,7 @@ class ItemAdmin(admin.ModelAdmin):
     list_display=['pk','name','short_desc','price']  
     list_display_links=['name']
     search_fields=['name']
-    list_filter=['is_publish','updated_at']
+    list_filter=['is_publish','updated_at']  #filter생성
     def short_desc(self,item):
         return item.desc[:20]
     pass
