@@ -6,6 +6,7 @@ from shop.models import Item
 from django.http import HttpResponse, JsonResponse
 # Create your views here.
 from .models import Item
+import re
 
 #07강 http 상태코드로 응답
 #200번대: 성공 300번대: 요청을 마치기 위해ㅣ 추가동작 400번대: 클라이언트측 오류 500번대 서버측 오류(indexerror,keyerror,django,db,models.objectdoesnotexist등)
@@ -67,3 +68,71 @@ def item_detail(request,pk):
     return render(request,'shop/item_detail.html',{
         'item': item,
     })
+
+def item_new(request, item=None):
+    error_list = []
+    initial = {}
+
+    if request.method == 'POST':
+        data = request.POST
+        files = request.FILES
+
+        name = data.get('name')
+        desc = data.get('desc')
+        price = data.get('price')
+        photo = files.get('photo')
+        is_publish = data.get('is_publish') in (True, 't', 'True', '1')
+
+        # 유효성 검사
+        if len(name) < 5:
+            error_list.append('name을 5글자 이상 입력해주세요.')
+
+        if re.match(r'^[\da-zA-Z\s]+$', desc):
+            error_list.append('한글을 입력해주세요.')
+
+        if not error_list:
+            # 저장 시도
+            if item is None:
+                item = Item()
+
+            item.name = name
+            item.desc = desc
+            item.price = price
+            item.is_publish = is_publish
+
+            if photo:
+                item.photo.save(photo.name, photo, save=False)
+
+            try:
+                item.save()
+            except Exception as e:
+                error_list.append(e)
+            else:
+                return redirect(item)
+
+        initial = {
+            'name': name,
+            'desc': desc,
+            'price': price,
+            'photo': photo,
+            'is_publish': is_publish,
+        }
+    else:
+        if item is not None:
+            initial = {
+                'name': item.name,
+                'desc': item.desc,
+                'price': item.price,
+                'photo': item.photo,
+                'is_publish': item.is_publish,
+            }
+
+    return render(request, 'shop/item_form.html', {
+        'error_list': error_list,
+        'initial': initial,
+    })
+
+
+def item_edit(request, pk):
+    item = get_object_or_404(Item, pk=pk)
+    return item_new(request, item)

@@ -10,7 +10,7 @@
 
 {% for item in item_list %}
 <div>
-    <a href="/shop/{{item.get_absolute_url}}">
+    <a href="{{item.get_absolute_url}}">
         <h3>{{item.name}}</h3>
     </a>
     <h4>가격: {{item.price}}</h4>
@@ -18,5 +18,6 @@
     <p>{{item.desc}}</p>
     {% endfor %}
 </div>
-
+<hr/>
+<a href="{%url "shop:item_new"%}">New Item</a>
 {% endblock %}
