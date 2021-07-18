@@ -25,3 +25,27 @@
 </body>
 
 </html>
+
+<!--
+23강
+{{value|add:"2"}}
+{{value|cut:" "}} string에서 " "제거
+
+파이썬 객체를 json으로 처리하기
+{{value|json_script:"my-id"}}
+<scripts id= "my-id" type="application/json">{"hello":"world"}</script>
+var value=JSON.parse(document.getElementById('my-id').textcontent); 
+
+24강
+장고 템플릿 태그
+필터보다 많은 인자 처리함
+load: ex>{%load humanize%} 빌트인 템플릿태그/필터 외에 추가 로딩
+
+조건문/반복문
+if elif else endif(if가 끝나는 영역)
+ifchanged endifchanged: 대상 값이 변경될 시에,
+for empty endfor :반복문 
+
+태그
+{%lorem 횟수 단어_단락_선택 랜덤여부%}
+-->
