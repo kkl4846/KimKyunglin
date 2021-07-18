@@ -8,10 +8,9 @@ register_converter(FourDigitYearConverter,'yyyy')
 app_name='shop'
 
 urlpatterns=[
-    path('archives/<yyyy:year>/', views.archives_year),
-    path('items/', item_list, name='item_list'),
-    path('',views.item_list),
-    path('<int:pk>/',views.item_detail),
+    path('archives/<yyyy:year>/', views.archives_year,name='archives_year'),
+    path('',views.item_list,name='item_list'),
+    path('<int:pk>/',views.item_detail,name='item_detail'),
     #path(r'^(?P<pk>\d+)/$',views.item_detail), 위와 같은 선언
     
 
