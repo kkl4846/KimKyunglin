@@ -1,4 +1,4 @@
-from django.urls import path, register_converter
+from django.urls import path, re_path , register_converter
 from .converters import FourDigitYearConverter  
 from .import views
 from .views import item_list
@@ -11,4 +11,8 @@ urlpatterns=[
     path('archives/<yyyy:year>/', views.archives_year),
     path('items/', item_list, name='item_list'),
     path('',views.item_list),
+    path('<int:pk>/',views.item_detail),
+    #path(r'^(?P<pk>\d+)/$',views.item_detail), 위와 같은 선언
+    
+
 ]
