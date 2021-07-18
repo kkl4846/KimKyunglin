@@ -1,4 +1,5 @@
 from django.db import models
+from askcompany.utils import uuid_upload_to
 from django.conf import settings
 # Create your models here.
 #11강 
@@ -10,6 +11,7 @@ class Post(models.Model):
     author_name=models.CharField(max_length=20,blank=True)  #이때 blank가 기존 record를 blank로 채워넣겠다는 의미
     title=models.CharField(max_length=100,db_index=True)
     content=models.TextField(blank=True)
+    photo=models.ImageField(uuid_upload_to)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
 

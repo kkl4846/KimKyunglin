@@ -1,4 +1,5 @@
 from django.db import models
+from askcompany.utils import uuid_upload_to
 from django.conf import settings
 "auth.User" #앱에 대한 외래키
 #모델 클래스명은 단수형으로 지정
@@ -12,6 +13,7 @@ class Item(models.Model):
     name=models.CharField(max_length=100)
     desc=models.TextField(blank=True)   #빈경우도 허용하겠다.
     price=models.PositiveIntegerField()
+    photo=models.ImageField(blank=True ,upload_to=uuid_upload_to)
     is_publish=models.BooleanField(default=False)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)

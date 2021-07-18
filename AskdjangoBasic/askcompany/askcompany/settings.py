@@ -137,6 +137,9 @@ STATIC_URL = '/static/'  #템플릿 태그 {%static "경로"%}에 의해서 참�
 STAITC_ROOT=os.path.join(BASE_DIR,'static')
 STATICFILES_DIRS=[os.path.join(BASE_DIR,'askcompany','static'),]
 
+MEDIA_URL='/media/'
+MEDIA_ROOT=os.path.join(BASE_DIR,'media')
+
 
 INTERNAL_IPS = [
     # ...

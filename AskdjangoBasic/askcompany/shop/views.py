@@ -59,7 +59,7 @@ def item_list(request):
         qs=qs.filter(name__icontains=q)  #대소문자 구별하지 않겠따.
     return render(request,'shop/item_list.html', {
         'item_list': qs, 
-      
+
         })
 
 def item_detail(request,pk):

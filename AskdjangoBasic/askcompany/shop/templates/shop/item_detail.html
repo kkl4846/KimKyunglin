@@ -4,16 +4,24 @@
 {% block content %}
 
     <h2>{{ item.name }}</h2>
+
+    {% if item.photo %}
+        <img src="{{item.photo.url}}" style="max-width: 100;" />
+        <!--실제 .url을 통한 접근에서-->
+
+        {{item.photo.path}}<br />
+        <!--media root와 조합/ -->
+    {%endif%}
     가격:{{item.price|intcomma}}원
     <!--가격에 ,를 생성 humanize-->
 
     {% if item.desc %}
-    <p>
-        {{ item.desc }}
-    </p>
+        <p>
+            {{ item.desc }}
+        </p>
     {%endif%}
 
-    <hr/>
+    <hr />
     <a href="/shop/">목록</a>
 
 {% endblock %}
