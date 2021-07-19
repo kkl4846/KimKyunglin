@@ -123,6 +123,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+from django.urls import reverse_lazy
+LOGIN_URL=reverse_lazy('login')
+LOGOUT_REDIRECT_URL=reverse_lazy('login')  #로그아웃하면 로그인 페이지로 이동하게
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
