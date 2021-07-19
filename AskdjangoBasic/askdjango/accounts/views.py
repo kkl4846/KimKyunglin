@@ -16,7 +16,8 @@ def signup(request):
             user=form.save()
             #회원가입 후 로그인 처리를 해주어야함
             auth_login(request,user)
-            return redirect(profile)
+            next_url=request.GET.get('next') or 'profile' #회원가입과 동시에 로그인
+            return redirect(next_url)
     else:
         form=SignupForm()
     return render(request,'accounts/signup.html',{
@@ -30,7 +31,8 @@ class SignupView(CreateView):
     form_class=SignupForm
     template_name='accounts/signup.html'
     def get_success_url(self):
-        return resolve_url('profile')
+        next_url=self.request.GET.get('next') or 'profile' #회원가입과 동시에 로그인
+        return resolve_url(next_url)
     def form_valid(self,form):
         user=form.save()
         auth_login(self.request,user)
