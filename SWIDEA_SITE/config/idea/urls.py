@@ -12,5 +12,6 @@ urlpatterns=[
     path('idea/create/',views.idea_create,name="idea_create"),
     path('idea/upate/<int:pk>',views.idea_update,name='idea_update'),
     path('idea/delete/<int:pk>',views.idea_delete,name='idea_delete'),
+#    path('interest/',views.idea_interest,name="idea_interest"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -3,21 +3,35 @@ from django.shortcuts import render, redirect , resolve_url, get_object_or_404
 from .models import Idea
 import json
 from .forms import IdeaForm
+from django.http import HttpResponse
 
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
 def idea_list(request):
     all_idea=Idea.objects.all()
-    #interest=request.GET['interest']   #아이디어가 여러개니까 INTEREST도 여러개여서 생기는 문제
     ctx={
         'all_idea':all_idea,
         
     }
     return render(request,'idea/idea_list.html',ctx)
+
 '''
 def idea_interest(request):
-    jsonObject=json.loads(request.body)
-    Idea.interest=jsonObject.get('number')
-    return JsonResponse(jsonObject)
+        p=request.POST.get('pk',None)
+        i=request.POST.get('interest',None)
+        idea = get_object_or_404(Idea, pk=p)
+        idea.interest=i
+        idea.save()
+        ctx={
+        'pk':p,
+        'interest':idea.interest,
+        
+        }
+        return render(request,'idea/idea_list.html',ctx)
+
 '''
+
 
 def idea_detail(request,pk):
     idea=get_object_or_404(Idea, pk=pk)
@@ -32,7 +46,7 @@ def idea_create(request,idea=None):
 
         form=IdeaForm(request.POST,request.FILES, instance=idea)
         if form.is_valid():
-            item=form.save()
+            idea=form.save()
             return redirect('/idea/'+str(idea.pk))
     else:
         form=IdeaForm(instance=idea)
@@ -40,6 +54,7 @@ def idea_create(request,idea=None):
     return render(request, 'idea/idea_form.html', {
         'form':form,
         })
+ 
 
 def idea_update(request,pk):
     idea = get_object_or_404(Idea, pk=pk)

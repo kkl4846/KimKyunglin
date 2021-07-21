@@ -17,7 +17,10 @@
     <hr/>
     {% for devtool in all_devtool %}
     
-    <h2>{{devtool.name}}<br /></h2>
+    <a href="{% url "devtool:devtool_detail" devtool.pk %}">
+        <h2>{{devtool.name}}<br /></h2>
+    </a>
+   
     
     <h4>{{devtool.type}}<br /></h4>
     <h5>{{devtool.explain}}<br /></h5>

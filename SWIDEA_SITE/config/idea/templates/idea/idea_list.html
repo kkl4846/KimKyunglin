@@ -6,7 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $.ajaxSetup({
+          headers: { "X-CSRFToken": '{{csrf_token}}' }
+        });
+    </script>
+    
 </head>
 
 <body>
@@ -20,46 +27,72 @@
     {%endif%}
    
     <a href="{% url "idea:idea_detail" idea.pk %}">
-        {{idea.title}}
+        <h3>{{idea.title}}</h3>
     </a>
-    {{idea.interest}}<br />
-    <h2 id="number">{{idea.interest}}</h2>
-    <div>
-        <button class="increase">+</button>
-        <button class="decrease">-</button>
-    </div>
+    예상 개발 툴: {{idea.devtool}}<br />
     
-    <script>
-        //+를 누르면 증가-를 누르면 감소하게 만들기
-        const number = document.querySelector("#number");
-        const increase = document.querySelector(".increase");
-        const decrease = document.querySelector(".decrease");   
+    <h2 id="number{{idea.pk}}">{{idea.interest}}</h2>
+    <div>
+        <button class="increase{{idea.pk}}">+</button>
+        <button class="decrease{{idea.pk}}">-</button>
+    </div>
 
-        increase.addEventListener("click", () => {
-            const current = parseInt(number.textContent, 10);
-            number.textContent = current + 1;
-            console.log(number.textContent)
+
+    <script>
+
+        
+     
+         
+      
+        
+        $(".increase{{idea.pk}}").click(function() {
             
+            var pk=parseInt(($(this).attr('class')).split("e")[2],10);   //increase뒤의 숫자를 split
+            var id_number="#number"+pk;
+        
+            var number= document.querySelector(id_number);
+            
+            var current = parseInt(number.textContent, 10);
+            
+            
+            
+            console.log(pk)
+            $.ajax({
+                type: "POST", 
+                url: "{% url 'idea:idea_list' %}",  //interest로 연결해봤지만 404오류 뜸..
+                data: {'pk':pk ,'interest':number.textContent,csrfmiddlewaretoken: '{{ csrf_token }}'},
+                contentType: "application/json",
+                success: function(response){
+                    number.textContent = current + 1;
+
+                },
+            });
+        });
+    
+
+        $(".decrease{{idea.pk}}").click(function() {
+            
+            var pk=parseInt(($(this).attr('class')).slice(8,),10);   //decrease뒤의 숫자를 split
+            var id_number="#number"+pk;
+        
+            var number= document.querySelector(id_number);
+            
+            var current = parseInt(number.textContent, 10);
+            
+            
+            
+            console.log(pk)
             $.ajax({
                 type: "POST", 
                 url: "{% url 'idea:idea_list' %}",
-                data: {'number':number.textContent ,'csrfmiddlewaretoken': '{{ csrf_token }}'},
-                dataType: "json",
+                data: {'pk':pk ,'interest':number.textContent,csrfmiddlewaretoken: '{{ csrf_token }}'},
+                contentType: "application/json",
                 success: function(response){
-                    $('body').append(data)
-                    /*
-                    $("#count-"+pk).html(response.like_count+"개");
-                    const current = parseInt(number.textContent, 10);  
-                    number.textContent = current + 1;
-                    console.log(`${increase.textContent}`)
-                */
-                }
-            });
-        });
+                    number.textContent = current - 1;
+                 
 
-        decrease.addEventListener("click", () => {
-            const current = parseInt(number.textContent, 10);
-            number.textContent = current - 1;
+                },
+            });
         });
 
     </script>
