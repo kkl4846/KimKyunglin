@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+    <div>
+        <h1>Idea List</h1>
+        <h3>나의 아이디어를 잊지말고 기록해보세요</h3>
+    </div>
+    {% for idea in all_idea %}
+    {% if idea.image %}
+    <img src="{{idea.image.url}}" width="400" /><br />
+    {%endif%}
+   
+    <a href="{% url "idea:idea_detail" idea.pk %}">
+        {{idea.title}}
+    </a>
+    {{idea.interest}}<br />
+    <h2 id="number">{{idea.interest}}</h2>
+    <div>
+        <button class="increase">+</button>
+        <button class="decrease">-</button>
+    </div>
+    
+    <script>
+        //+를 누르면 증가-를 누르면 감소하게 만들기
+        const number = document.querySelector("#number");
+        const increase = document.querySelector(".increase");
+        const decrease = document.querySelector(".decrease");   
+
+        increase.addEventListener("click", () => {
+            const current = parseInt(number.textContent, 10);
+            number.textContent = current + 1;
+            console.log(number.textContent)
+            
+            $.ajax({
+                type: "POST", 
+                url: "{% url 'idea:idea_list' %}",
+                data: {'number':number.textContent ,'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                dataType: "json",
+                success: function(response){
+                    $('body').append(data)
+                    /*
+                    $("#count-"+pk).html(response.like_count+"개");
+                    const current = parseInt(number.textContent, 10);  
+                    number.textContent = current + 1;
+                    console.log(`${increase.textContent}`)
+                */
+                }
+            });
+        });
+
+        decrease.addEventListener("click", () => {
+            const current = parseInt(number.textContent, 10);
+            number.textContent = current - 1;
+        });
+
+    </script>
+    {%endfor%}
+    
+</body>
+
+</html>

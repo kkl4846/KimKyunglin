@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+    <div>
+        <h1>DevTool Detail</h1>
+        <h3>개발툴 세부내용 페이지입니다. 자신이 다룰 수 있는 개발툴에 대한 상세 내용을 확인해보세요.</h3>
+    </div>
+    <hr/>
+
+    <h2>{{devtool.name}}<br /></h2>
+    
+    <h5>{{devtool.type}}<br /></h5>
+    <h5>{{devtool.explain}}<br /></h5>
+    <h3>>만들 수 있는 sw목록</h3>
+  
+    {%for idea in ideas%}
+    <a href="{% url "idea:idea_detail" idea.pk %}">{{idea.title}}</a>
+    {%endfor%}
+    <br/>
+    <br/>
+    <a href="{%url "devtool:devtool_delete" devtool.pk %}">삭제</a>
+    <a href="{%url "devtool:devtool_list" %}">목록</a>
+    <a href="{%url "devtool:devtool_update" devtool.pk %}">수정</a>
+    <hr/>
+    
+
+
+    
+</body>
+
+</html>
