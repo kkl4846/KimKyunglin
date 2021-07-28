@@ -1,168 +1,178 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'instagram/base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pirostagram</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-        crossorigin="anonymous"></script>
-</head>
+{% block content %}
+<div class="d-flex flex-column " style="align-items:center;">
+{% for post in all_post %}
+<div class="row post-id-{{ post.id }} mt-3 mb-5 "
+    style=" border: solid; border-radius: 30px; border-color: lightgray; width: 80%; height: 600px;">
+    {% if post.image %}
+    <div class="col d-flex align-items-center ">
+        <img src="{{post.image.url}}" style="width: 100%; border-radius: 30px;"/>
+    </div>
+    {%endif%}
 
-<body>
-
-    {% for post in all_post %}
-    <div class="card post__container post-id-{{ post.id }}">
-        {% if post.image %}
-        <img src="{{post.image.url}}" width="400" />
-        {%endif%}
-        {{post.title}}<br />
-        {{post.content}}<br />
-        {%if post.like == 1 %}
-        <div class="btn btn- post__like" onclick="onClickLike({{post.id}}, 'like')">❤️</div>
-        {%else%}
-        <div class="btn btn- post__dislike" onclick="onClickLike({{post.id}}, 'dislike')">🤍</div>
-        {%endif%}
-        <div class="post_{{post.id}} comments">
+    <div class="col d-flex flex-column position-relative">
+        <div class="text-center">{{post.title}}</div>
+        <hr class="my-2">
+        <div style="height: 200px;">{{post.content}}</div>
+        댓글
+        <hr class="my-1">
+        <div class="post_{{post.id}} comments" >
             {%if all_comment%}
             {%for comment in all_comment %}
             {%if comment.post.id == post.id%}
-            <div class="comment_object_{{comment.id}}">
-                {{comment.comment_content}}<div class="btn btn- delete" onclick="onClickDelete({{comment.id}} )">삭제
+            <div class="comment_object_{{comment.id}} d-flex justify-content-between">
+                {{comment.comment_content}}<div class="btn btn-outline-secondary delete" onclick="onClickDelete({{comment.id}} )">삭제
                 </div>
-
             </div>
             {%endif%}
             {%endfor%}
             {%endif%}
         </div>
+
       
-        <div>
+
+        <div class="position-absolute bottom-0" style="width: 90%;">
+            <hr class="my-2">
+            {%if post.like == 1 %}
+            <div >
+                <span class="btn btn- post__like" onclick="onClickLike({{post.id}}, 'like')">❤️</span>
+                <span class="heart_comment_{{post.id}}">이 게시물에 좋아요를 누르셨습니다!</span>
+            </div>
+            {%else%}
+            <div>
+                <span class="btn btn- post__dislike" onclick="onClickLike({{post.id}}, 'dislike')">🤍</span>
+                <span class="heart_comment_{{post.id}}">게시물이 마음에 드시면 좋아요를 눌러주세요!</span>
+            </div>
+            {%endif%}
+            <hr class="my-2">
             <form action="comment_create/" method="POST">
                 {% csrf_token %}
-                <input type="text" name="comment_content" id="comment_{{post.id}}">
-                <div class="btn btn- submit"
-                    onclick="onClickComment({{post.id}}, document.querySelector('#comment_{{post.id}}').value)">submit
+                <input type="text" name="comment_content" id="comment_{{post.id}}" value='댓글달기...' style="width: 80%;">
+                <div class="btn btn-outline-dark submit"
+                    onclick="onClickComment({{post.id}}, document.querySelector('#comment_{{post.id}}').value)">
+                    submit
                 </div>
             </form>
         </div>
+
     </div>
-    {%endfor%}
-    <script>
+</div>
+{%endfor%}
+</div>
+<script>
 
-        //1.좋아요 기능
-        const requestLike = new XMLHttpRequest();
-        const onClickLike = (id, type) => {          
-            const url = '/like_ajax/';           
-            requestLike.open('POST', url, true);  
-            requestLike.setRequestHeader(
-                'Content-Type',
-                'application/x-www-form-urlencoded'
+    //1.좋아요 기능
+    const requestLike = new XMLHttpRequest();
+    const onClickLike = (id, type) => {
+        const url = '/like_ajax/';
+        requestLike.open('POST', url, true);
+        requestLike.setRequestHeader(
+            'Content-Type',
+            'application/x-www-form-urlencoded'
 
-            );
-            requestLike.send(JSON.stringify({ id: id, type: type })); 
-        };
+        );
+        requestLike.send(JSON.stringify({ id: id, type: type }));
+    };
 
-        const likeHandleResponse = () => {
-            if (requestLike.status < 400) {
-                const { id, type } = JSON.parse(requestLike.response)  
-                const element = document.querySelector(`.post-id-${id} .post__${type}`)
-                if (element.innerHTML === '❤️') {
-
-                    element.innerHTML = '🤍';
-
-                }
-
-
-                else {
-                    element.innerHTML = '❤️'
-                }
-            }
-
-
-        }
-
-        requestLike.onreadystatechange = () => {
-            if (requestLike.readyState === XMLHttpRequest.DONE) {   
-                likeHandleResponse();
-
-            }
-        }
-        //2. 댓글 입력
-        const requestComment = new XMLHttpRequest();
-
-        const onClickComment = (id_comment, comment_content) => {          
-            const url_comment = 'comment_create/';            
-            requestComment.open('POST', url_comment, true); 
-            requestComment.setRequestHeader(
-                'Content-Type',
-                'application/x-www-form-urlencoded'
-
-            );
-            requestComment.send(JSON.stringify({ id_comment: id_comment, comment_content: comment_content }));  
-        };
-
-     
-        const commentHandleResponse = () => {
-            if (requestComment.status < 400) {
-                const { post_id, comment_content, comment_id } = JSON.parse(requestComment.response)  
-                const element_comment = document.querySelector(`.post_${post_id}.comments`)  //클래스 이름이 'post_{post.id} comments' ->중간에 빈칸이 들어가면 클래스 네임이 두개인 것. 따라서 둘다 언급해준다. 
-                const newDiv = document.createElement('div')
-                newDiv.className = `comment_object_${comment_id}`;
-                newDiv.innerHTML = `${comment_content}<div class="btn btn- delete" onclick="onClickDelete(${comment_id} )">삭제</div>`
-                element_comment.appendChild(newDiv)
-                //댓글 입력창 비워주기
-                const input_content = document.querySelector(`#comment_${post_id}`)
-                input_content.value=null
-
-            }
-        }
-        requestComment.onreadystatechange = () => {
-            if (requestComment.readyState === XMLHttpRequest.DONE) {  
-                commentHandleResponse();
-            }
-        }
-
-        //3.댓글 삭제
-        const requestDelete = new XMLHttpRequest();
-     
-        const onClickDelete = (comment_id) => {          
-            const url = '/comment_delete/';         
-            requestDelete.open('POST', url, true);  
-            requestDelete.setRequestHeader(
-                'Content-Type',
-                'application/x-www-form-urlencoded'
-
-            );
-            requestDelete.send(JSON.stringify({ comment_id: comment_id }));  
-        };
-
-      
-        const deleteHandleResponse = () => {
-            if (requestDelete.status < 400) {
-                const { comment_id } = JSON.parse(requestDelete.response)
-
-                const delete_element = document.querySelector(`.comment_object_${comment_id}`)
-                const element_comment = delete_element.closest('.comments')     //클래스 이름이 'post_{post.id} comments'로 두개이다. post.id에 대한 정보는 없으므로 .comments라는 클래스만 언급하여 부모 요소를 select한다.
-                element_comment.removeChild(delete_element)
+    const likeHandleResponse = () => {
+        if (requestLike.status < 400) {
+            const { id, type } = JSON.parse(requestLike.response)
+            const element = document.querySelector(`.post-id-${id} .post__${type}`)
+            if (element.innerHTML === '❤️') {
+                const heart_comment=document.querySelector(`.heart_comment_${id}`)
+                heart_comment.innerHTML="게시물이 마음에 드시면 좋아요를 눌러주세요!"
+                element.innerHTML = '🤍';
 
             }
 
 
-        }
-
-        requestDelete.onreadystatechange = () => {
-            if (requestDelete.readyState === XMLHttpRequest.DONE) {   
-                deleteHandleResponse();
-
+            else {
+                const heart_comment=document.querySelector(`.heart_comment_${id}`)
+                heart_comment.innerHTML="이 게시물에 좋아요를 누르셨습니다!"
+                element.innerHTML = '❤️'
             }
         }
 
-    </script>
-</body>
 
-</html>
+    }
+
+    requestLike.onreadystatechange = () => {
+        if (requestLike.readyState === XMLHttpRequest.DONE) {
+            likeHandleResponse();
+
+        }
+    }
+    //2. 댓글 입력
+    const requestComment = new XMLHttpRequest();
+
+    const onClickComment = (id_comment, comment_content) => {
+        const url_comment = 'comment_create/';
+        requestComment.open('POST', url_comment, true);
+        requestComment.setRequestHeader(
+            'Content-Type',
+            'application/x-www-form-urlencoded'
+
+        );
+        requestComment.send(JSON.stringify({ id_comment: id_comment, comment_content: comment_content }));
+    };
+
+
+    const commentHandleResponse = () => {
+        if (requestComment.status < 400) {
+            const { post_id, comment_content, comment_id } = JSON.parse(requestComment.response)
+            const element_comment = document.querySelector(`.post_${post_id}.comments`)  //클래스 이름이 'post_{post.id} comments' ->중간에 빈칸이 들어가면 클래스 네임이 두개인 것. 따라서 둘다 언급해준다. 
+            const newDiv = document.createElement('div')
+            newDiv.className = `comment_object_${comment_id} d-flex justify-content-between`;
+            newDiv.innerHTML = `${comment_content}<div class="btn btn-outline-secondary delete" onclick="onClickDelete(${comment_id} )">삭제</div>`
+            element_comment.appendChild(newDiv)
+            //댓글 입력창 비워주기
+            const input_content = document.querySelector(`#comment_${post_id}`)
+            input_content.value = null
+
+        }
+    }
+    requestComment.onreadystatechange = () => {
+        if (requestComment.readyState === XMLHttpRequest.DONE) {
+            commentHandleResponse();
+        }
+    }
+
+    //3.댓글 삭제
+    const requestDelete = new XMLHttpRequest();
+
+    const onClickDelete = (comment_id) => {
+        const url = '/comment_delete/';
+        requestDelete.open('POST', url, true);
+        requestDelete.setRequestHeader(
+            'Content-Type',
+            'application/x-www-form-urlencoded'
+
+        );
+        requestDelete.send(JSON.stringify({ comment_id: comment_id }));
+    };
+
+
+    const deleteHandleResponse = () => {
+        if (requestDelete.status < 400) {
+            const { comment_id } = JSON.parse(requestDelete.response)
+
+            const delete_element = document.querySelector(`.comment_object_${comment_id}`)
+            const element_comment = delete_element.closest('.comments')     //클래스 이름이 'post_{post.id} comments'로 두개이다. post.id에 대한 정보는 없으므로 .comments라는 클래스만 언급하여 부모 요소를 select한다.
+            element_comment.removeChild(delete_element)
+
+        }
+
+
+    }
+
+    requestDelete.onreadystatechange = () => {
+        if (requestDelete.readyState === XMLHttpRequest.DONE) {
+            deleteHandleResponse();
+
+        }
+    }
+
+</script>
+
+{% endblock %}

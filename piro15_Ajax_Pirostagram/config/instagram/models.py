@@ -7,7 +7,7 @@ class Post(models.Model):
     title=models.CharField(max_length=50)
     content=models.TextField(blank=True)
     image=ImageField(blank=True ,upload_to="post_image/%Y/%m/%d/")
-    like=models.BooleanField(max_length=5, default=0)
+    like=models.BooleanField(default=False)
     def __str__(self):
         return self.title
 class Comment(models.Model):
